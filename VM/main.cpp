@@ -4,12 +4,12 @@
 #include "RigidBody//RigidBody.h"
 using namespace std;
 RigidBody rigidBody = RigidBody();
-double const1 = sqrt(3)/6;
-double const2 = sqrt(3)/3;
-double const3 = sqrt(6)/12;
 //double const4 = sqrt(6)/4;
 /*double rotate_y = 0;
 double rotate_x = 0;*/
+double const1 = sqrt(3)/6;
+double const2 = sqrt(3)/3;
+double const3 = 1.0f/4.0f;
 
 void Idle() {
     glutPostRedisplay();
