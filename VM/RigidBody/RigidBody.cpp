@@ -10,11 +10,11 @@ RigidBody::RigidBody() {
     this->mass = 1;
     this->s = SIDE;
     this->h = HEIGHT;
-    double y = s / h, teta = 0.0f;
-    double Ix = ((3 * mass * h * h) / 5.0f) * (((y * y) / 16.0f) * (1.0f / 3.0f + 1.0f / (tan(PI / 3.0f) * tan(PI / 3.0f))) * (1 + cos(teta)) + sin(teta) * sin(teta)) + mass * 3.0f/4.0f * 3.0f/4.0f * h * h;
-    teta = PI/2;
-    double Iy = ((3 * mass * h * h) / 5.0f) * (((y * y) / 16.0f) * (1.0f / 3.0f + 1.0f / (tan(PI / 3.0f) * tan(PI / 3.0f))) * (1 + cos(teta)) + sin(teta) * sin(teta)) + mass * 3.0f/4.0f * 3.0f/4.0f * h * h;
-    double Iz = ((3 * mass * h * h) / 5.0f) * (((y * y) / 16.0f) * (1.0f / 3.0f + 1.0f / (tan(PI / 3.0f) * tan(PI / 3.0f))) * (1 + cos(teta)) + sin(teta) * sin(teta)) + mass * 3.0f/4.0f * 3.0f/4.0f * h * h;
+    double y = s / h, theta = 0.0f;
+    double Iz = ((3 * mass * h * h) / 5.0f) * (((y * y) / 16.0f) * (1.0f / 3.0f + 1.0f / (tan(PI / 3.0f) * tan(PI / 3.0f))) * (1 + cos(theta)) + sin(theta) * sin(theta));
+    theta = PI / 2;
+    double Iy = ((3 * mass * h * h) / 5.0f) * (((y * y) / 16.0f) * (1.0f / 3.0f + 1.0f / (tan(PI / 3.0f) * tan(PI / 3.0f))) * (1 + cos(theta)) + sin(theta) * sin(theta)) - mass * 3.0f / 4.0f * 3.0f / 4.0f * h * h;
+    double Ix = ((3 * mass * h * h) / 5.0f) * (((y * y) / 16.0f) * (1.0f / 3.0f + 1.0f / (tan(PI / 3.0f) * tan(PI / 3.0f))) * (1 + cos(theta)) + sin(theta) * sin(theta)) - mass * 3.0f / 4.0f * 3.0f / 4.0f * h * h;
     Matrix Ibody = {Ix,0,0,
                     0,Iy,0,
                     0,0,Iz};//tensor inerchii

@@ -97,7 +97,7 @@ void Display()
     glLoadIdentity();
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    useRungeKutta(rigidBody, 0.01);
+    useRungeKutta(rigidBody, 0.001);
     glPushMatrix();
     glTranslated(rigidBody.x.vector[0], rigidBody.x.vector[0], rigidBody.x.vector[0] - 50);
     //glTranslated( 0, 0, -5);
