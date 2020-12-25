@@ -2,14 +2,12 @@
 #include <cmath>
 #include <iostream>
 #include "RigidBody//RigidBody.h"
-
-
 using namespace std;
 RigidBody rigidBody = RigidBody();
 double const1 = sqrt(3)/6;
 double const2 = sqrt(3)/3;
 double const3 = sqrt(6)/12;
-double h = sqrt(6)/3;
+//double const4 = sqrt(6)/4;
 /*double rotate_y = 0;
 double rotate_x = 0;*/
 
@@ -42,33 +40,33 @@ void drawTetraedr()
 
     //bottom triangle
     glColor4f(1.0f, 0.0f, 0.0f, 1.0f);
-    glVertex3f(-0.5f, -const1, -const3);//A
-    glVertex3f( 0.5f, -const1, -const3);//C
-    glVertex3f( 0.0f, const2 , -const3);//B
+    glVertex3f(-0.5f * SIDE, -const1 * SIDE, -const3 * HEIGHT);//A
+    glVertex3f(0.5f * SIDE, -const1 * SIDE, -const3 * HEIGHT);//C
+    glVertex3f(0.0f, const2 * SIDE , -const3 * HEIGHT);//B
 
     //right side triangle
     glColor4f(0.0f, 0.0f, 1.0f, 1.0f);
-    glVertex3f(-0.5f, -const1, -const3);//A
-    glVertex3f( 0.5f, -const1, -const3);//C
-    glVertex3f( 0.0f,  0.0f, h -const3);//S
+    glVertex3f(-0.5f * SIDE, -const1 * SIDE, -const3 * HEIGHT);//A
+    glVertex3f(0.5f * SIDE, -const1 * SIDE, -const3 * HEIGHT);//C
+    glVertex3f(0.0f, 0.0f, HEIGHT - const3 * HEIGHT);//S
 
     //left side triangle
     glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-    glVertex3f( 0.0f,  0.0f, h -const3);//S
-    glVertex3f(-0.5f, -const1, -const3);//A
-    glVertex3f( 0.0f, const2 , -const3);//B
+    glVertex3f(0.0f, 0.0f, HEIGHT - const3 * HEIGHT);//S
+    glVertex3f(-0.5f * SIDE, -const1 * SIDE, -const3 * HEIGHT);//A
+    glVertex3f(0.0f, const2 * SIDE , -const3 * HEIGHT);//B
 
     //front triangle
     glColor4f(0.0f, 1.0f, 0.0f, 1.0f);
-    glVertex3f( 0.5f, -const1, -const3);//C
-    glVertex3f( 0.0f,  0.0f, h-const3);//S
-    glVertex3f( 0.0f, const2 , -const3);//B
+    glVertex3f(0.5f * SIDE, -const1 * SIDE, -const3 * HEIGHT);//C
+    glVertex3f(0.0f, 0.0f, HEIGHT - const3 * HEIGHT);//S
+    glVertex3f(0.0f, const2 * SIDE , -const3 * HEIGHT);//B
 
     glEnd();
 }
 
-// управление курсором
-/*void pressedSpecialKey(int key, int x, int y) {
+/*// управление курсором
+void pressedSpecialKey(int key, int x, int y) {
 
     //  Правая стрелка - увеличение вращения на 5 градусов
     if (key == GLUT_KEY_RIGHT)
@@ -99,9 +97,10 @@ void Display()
     glLoadIdentity();
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    useRungeKutta(rigidBody, 0.000001);
+    useRungeKutta(rigidBody, 0.01);
     glPushMatrix();
-    glTranslated( 0, 0, -3);
+    glTranslated(rigidBody.x.vector[0], rigidBody.x.vector[0], rigidBody.x.vector[0] - 50);
+    //glTranslated( 0, 0, -5);
     GLdouble rotationMatrixForOpenGL[16] = {rigidBody.R.matrix[0][0], rigidBody.R.matrix[1][0], rigidBody.R.matrix[2][0], 0, rigidBody.R.matrix[0][1], rigidBody.R.matrix[1][1], rigidBody.R.matrix[2][1], 0, rigidBody.R.matrix[0][2], rigidBody.R.matrix[1][2], rigidBody.R.matrix[2][2], 0, 0, 0, 0, 1};
     glMultMatrixd(rotationMatrixForOpenGL);
     drawTetraedr();
@@ -118,7 +117,7 @@ int main(int argc,char** argv) {
     glutInitWindowPosition(100, 100); // установка положения окна на экране
     glutCreateWindow("Тетраэдр"); // запуск экранного окна
     glutDisplayFunc(Display);
-//    glutSpecialFunc(pressedSpecialKey);
+ //   glutSpecialFunc(pressedSpecialKey);
     glutIdleFunc(Idle);
     glEnable(GL_DEPTH_TEST);
     glutKeyboardFunc(Keyboard);

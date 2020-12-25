@@ -6,7 +6,8 @@ public:
     double vector[3];
     Triple addVector (Triple nv);
     Triple multipleScalar(double x);
-
+/*    double getSum();
+    Triple makeNegative();*/
 };
 
 

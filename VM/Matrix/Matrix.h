@@ -12,6 +12,6 @@ public:
     Matrix addMatrix(Matrix nm);
     Matrix inverted();
     Matrix transposed();
-    Quaternion toQuaternion();
+//    Matrix orthogonalityMatrix();
 };
 #endif //VM_MATRIX_H

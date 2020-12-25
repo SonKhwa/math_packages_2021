@@ -1,22 +1,28 @@
 #include "RigidBody.h"
 
 Matrix star(Triple v) {
-    return Matrix{ {{0.0, v.vector[2], -v.vector[1]},
-                           {-v.vector[2], 0.0, v.vector[0]},
-                           {v.vector[1], -v.vector[0], 0.0}} };
+    return Matrix{ {{0.0, -v.vector[2], v.vector[1]},
+                           {v.vector[2], 0.0, -v.vector[0]},
+                           {-v.vector[1], v.vector[0], 0.0}} };
 }
 
 RigidBody::RigidBody() {
-    mass = -0.707107;
-    s = 1;
-    Matrix D = {1, 0.5, 0.5, 1, 1, 0.5, 0.5, 0.5 ,1};
-    auto V =(double) (1.0/6.0*s*s*s*sqrt(D.det()));
-    Ibody = {0.025, 0,0,0,0.025,0,0,0,0.025};
-    Ibody.multipleScalar(V/20);
-    Ibodyinv = Ibody.inverted();
-    L = Triple{6, 6, 6};
-    q = {cos(45), 0, 0, 1};
-    R = q.toMatrix();
+    this->mass = 1;
+    this->s = SIDE;
+    this->h = HEIGHT;
+    double y = s / h, teta = 0.0f;
+    double Ix = ((3 * mass * h * h) / 5.0f) * (((y * y) / 16.0f) * (1.0f / 3.0f + 1.0f / (tan(PI / 3.0f) * tan(PI / 3.0f))) * (1 + cos(teta)) + sin(teta) * sin(teta)) + mass * 3.0f / 8 * h * h;
+    teta = PI/2;
+    double Iy = ((3 * mass * h * h) / 5.0f) * (((y * y) / 16.0f) * (1.0f / 3.0f + 1.0f / (tan(PI / 3.0f) * tan(PI / 3.0f))) * (1 + cos(teta)) + sin(teta) * sin(teta)) + mass * 3.0f / 8 * h * h;
+    double Iz = ((3 * mass * h * h) / 5.0f) * (((y * y) / 16.0f) * (1.0f / 3.0f + 1.0f / (tan(PI / 3.0f) * tan(PI / 3.0f))) * (1 + cos(teta)) + sin(teta) * sin(teta)) + mass * 3.0f / 8 * h * h;
+    Matrix Ibody = {Ix,0,0,
+                    0,Iy,0,
+                    0,0,Iz};//tensor inerchii
+    this->Ibodyinv = Ibody.inverted();
+    this->L = Triple{6, 6, 6};
+    this->R = Matrix{1,0,0,0,1,0,0,0,1};
+    this->P = Triple{ 0,0,0};
+    this->x = {0,0,0};
 }
 
 RigidBody RigidBody::f() {

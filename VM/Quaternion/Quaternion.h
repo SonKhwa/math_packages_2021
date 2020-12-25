@@ -1,7 +1,7 @@
 #ifndef VM_QUATERNION_H
 #define VM_QUATERNION_H
 #include <cmath>
-//#include "..//Matrix/Matrix.h"
+//#include "..//Matrix/Matrix.HEIGHT"
  class Matrix;
 class Quaternion {
 public:
