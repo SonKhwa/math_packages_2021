@@ -1,0 +1,56 @@
+
+:root {
+    --pad: 20px;
+}
+
+.grid {
+    background: #ffffff;
+    margin: 0 0 env(--pad) 0;
+}
+
+.grid::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+[class*='col-'] {
+    float: left;
+    padding-right: env(--pad);
+}
+.grid:last-of-type {
+    padding-right: 0;
+}
+
+.col-2-3 {
+	width: 50%;
+}
+.col-1-3 {
+	width: 50%;
+}
+
+.module {
+  padding: env(--pad);
+  background: #ffffff;
+}
+
+.grid-pad {
+    padding: env(--pad) env(--pad) env(--pad) env(--pad);
+}
+[class*='col-']:last-of-type {
+    padding-right: env(--pad);
+}
+
+
+body {
+	padding: 10px 50px 200px;
+  background: #555;
+  background-size: 300px 300px;
+}
+h1 {
+    color: #ffffff;
+}
+em {
+    color: #646464;
+    font-size: 16px;
+}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to tetris!</title>
+<script src="SaveScript.js"></script>
+</head>
+<body>
+<h1>Welcome to tetris!</h1>
+<form action="main.html" method="get">
+<label>
+	Enter name:<br>
+	<input id="usernameid" type="text" placeholder="User's name" onchange="storeName(this)" required><br>
+
+</label>
+<input type="submit" value="Input">
+</form>
+<script>
+	let input = document.getElementById('usernameid');
+	readName(input, true);
+</script>
+</body>
+</html>
